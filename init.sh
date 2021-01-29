@@ -79,16 +79,17 @@ if [[ -n $domain ]]; then
     # Enable staging mode if needed
     if [ $staging != "0" ]; then staging_arg="--staging"; fi
     docker-compose run --rm --entrypoint "\
-        certbot certonly --webroot -w /var/www/certbot \
-            $staging_arg \
-            $email_arg \
-            $domain_args \
-            --rsa-key-size $rsa_key_size \
-            --agree-tos \
-            --force-renewal" certbot
+		certbot certonly --dns-cloudflare  \
+		--dns-cloudflare-credentials /root/cloudflare.ini \
+		--dns-cloudflare-propagation-seconds 60 \
+        $staging_arg \
+		--email degroote@mac.com \
+		--agree-tos --no-eff-email \
+		--force-renewal \
+		-d *.13teams.com " certbot
     echo
     echo "Reloading nginx ..."
-    docker-compose exec webserver webserver -s reload
+    docker-compose exec webserver nginx -s reload
 else
     cp ./nginx_old.conf ./nginx.conf
     echo "" > ./nosh_uri.txt

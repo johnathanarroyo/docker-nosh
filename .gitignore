@@ -1,0 +1,9 @@
+nginx.conf
+.db_password
+.db_root_password
+.key
+.nosh_app_key
+key
+key.enc
+nosh_uri.txt
+cloudflare.ini
