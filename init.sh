@@ -29,7 +29,7 @@ if [[ -n $domain ]]; then
     read -e -r -p "What is your email address?  This is to register your SSL certificate." -i "" email
     cp ./nginx_ssl.conf ./nginx.conf
     sed -i "s/example.org/$domain/" ./nginx.conf
-    echo "https://$domain/nosh" > ./nosh_uri.txt
+    echo "https://$domain" > ./nosh_uri.txt
     domains=("$domain" www."$domain")
     rsa_key_size=4096
     data_path="./certbot"

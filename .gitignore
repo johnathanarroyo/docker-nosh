@@ -7,5 +7,5 @@ key
 key.enc
 nosh_uri.txt
 cloudflare.ini
-mailgun_domain.txt
+*.txt
 mailgun_secret.txt
