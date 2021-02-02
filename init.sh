@@ -33,7 +33,7 @@ if [[ -n $domain ]]; then
     domains=("$domain" www."$domain")
     rsa_key_size=4096
     data_path="./certbot"
-    staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
+    staging=1 # Set to 1 if you're testing your setup to avoid hitting request limits
     if [ -d "$data_path" ]; then
         read -p -r "Existing data found for $domain. Continue and replace existing certificate? (y/N) " decision
         if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
@@ -86,7 +86,7 @@ if [[ -n $domain ]]; then
 		--email degroote@mac.com \
 		--agree-tos --no-eff-email \
 		--force-renewal \
-		-d *.13teams.com " certbot
+		-d med.13teams.com " certbot
     echo
     echo "Reloading nginx ..."
     docker-compose exec webserver nginx -s reload
